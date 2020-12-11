@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+
+use App\Http\Controllers\PagesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,14 +15,17 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PagesController::class, 'index']);
+Route::get('/about', [PagesController::class, 'about']);
+Route::get('/services', [PagesController::class, 'services']);
 
 Route::get('/hello', function () {
-    return 'HELLO WORLD!';
+    return '<h1>HELLO WORLD!</h1>';
 });
 
+Route::get('/users/{id}/{name}', function ($id, $name) {
+    return 'This is user ' . $name . ' with an id ' . $id . '.';
+});
 
 // Route::get('/there', function(){
 //     return 'REDIRECTED';
