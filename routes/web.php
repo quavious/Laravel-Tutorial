@@ -7,7 +7,7 @@ use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
-use App\Http\Controllers\PagesController;
+use App\Http\Controllers\PostsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,15 +19,16 @@ use App\Http\Controllers\PagesController;
 |
 */
 
-Route::get('/', [PagesController::class, 'index'])->name('home');
-Route::get('/about', [PagesController::class, 'about']);
-Route::get('/services', [PagesController::class, 'services']);
+Route::get('/', [PostsController::class, 'index'])->name('home');
+Route::get('/about', [PostsController::class, 'about']);
+Route::get('/services', [PostsController::class, 'services']);
 
 Route::get('/hello', function () {
     return '<h1>HELLO WORLD!</h1>';
 });
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->name('dashboard');
 
 Route::get('/users/{id}/{name}', function ($id, $name) {
     return 'This is user ' . $name . ' with an id ' . $id . '.';
