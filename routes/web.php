@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -23,9 +25,14 @@ Route::get('/hello', function () {
     return '<h1>HELLO WORLD!</h1>';
 });
 
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
 Route::get('/users/{id}/{name}', function ($id, $name) {
     return 'This is user ' . $name . ' with an id ' . $id . '.';
 });
+
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::post('/register', [RegisterController::class, 'store']);
 
 // Route::get('/there', function(){
 //     return 'REDIRECTED';

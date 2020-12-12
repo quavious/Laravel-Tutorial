@@ -8,16 +8,27 @@ class PagesController extends Controller
 {
     public function index()
     {
-        return view('pages.index');
+        $title = 'Welcome To Laravel';
+        //return view('pages.index', compact('title'));
+        //Able to Hand Over Multiple Values
+        return view('posts.index')->with('title', $title);
     }
 
     public function about()
     {
-        return view('pages.about');
+        $title = "About My Laravel App";
+        return view('posts.about')->with("title", $title);
     }
 
     public function services()
     {
-        return view('pages.services');
+        // Array in PHP can be an object in JS
+        $data = array(
+            'title' => 'Services',
+            'services' => [
+                'Web Design', "Programming", "Database"
+            ]
+        );
+        return view('posts.services')->with($data);
     }
 }
